@@ -1,0 +1,617 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C2B7D99E26D3F15500BE05DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B7D99D26D3F15500BE05DF /* AppDelegate.swift */; };
+		C2B7D9A026D3F15500BE05DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B7D99F26D3F15500BE05DF /* SceneDelegate.swift */; };
+		C2B7D9A226D3F15600BE05DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B7D9A126D3F15500BE05DF /* ViewController.swift */; };
+		C2B7D9A526D3F15600BE05DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B7D9A326D3F15600BE05DF /* Main.storyboard */; };
+		C2B7D9A726D3F1A000BE05DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B7D9A626D3F1A000BE05DF /* Assets.xcassets */; };
+		C2B7D9AA26D3F1A000BE05DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B7D9A826D3F1A000BE05DF /* LaunchScreen.storyboard */; };
+		C2B7D9B526D3F1A100BE05DF /* WalpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B7D9B426D3F1A100BE05DF /* WalpTests.swift */; };
+		C2B7D9C026D3F1A100BE05DF /* WalpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B7D9BF26D3F1A100BE05DF /* WalpUITests.swift */; };
+		C2CCF540270A123200D4EF80 /* UnsplashAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CCF53F270A123200D4EF80 /* UnsplashAPI.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C2B7D9B126D3F1A000BE05DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2B7D99226D3F15500BE05DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C2B7D99926D3F15500BE05DF;
+			remoteInfo = Walp;
+		};
+		C2B7D9BC26D3F1A100BE05DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2B7D99226D3F15500BE05DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C2B7D99926D3F15500BE05DF;
+			remoteInfo = Walp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C2B7D99A26D3F15500BE05DF /* Walp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Walp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2B7D99D26D3F15500BE05DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C2B7D99F26D3F15500BE05DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C2B7D9A126D3F15500BE05DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C2B7D9A426D3F15600BE05DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C2B7D9A626D3F1A000BE05DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C2B7D9A926D3F1A000BE05DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C2B7D9AB26D3F1A000BE05DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2B7D9B026D3F1A000BE05DF /* WalpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2B7D9B426D3F1A100BE05DF /* WalpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalpTests.swift; sourceTree = "<group>"; };
+		C2B7D9B626D3F1A100BE05DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2B7D9BB26D3F1A100BE05DF /* WalpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2B7D9BF26D3F1A100BE05DF /* WalpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalpUITests.swift; sourceTree = "<group>"; };
+		C2B7D9C126D3F1A100BE05DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2CCF53F270A123200D4EF80 /* UnsplashAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashAPI.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C2B7D99726D3F15500BE05DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2B7D9AD26D3F1A000BE05DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2B7D9B826D3F1A100BE05DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C2B7D99126D3F15400BE05DF = {
+			isa = PBXGroup;
+			children = (
+				C2B7D99C26D3F15500BE05DF /* Walp */,
+				C2B7D9B326D3F1A000BE05DF /* WalpTests */,
+				C2B7D9BE26D3F1A100BE05DF /* WalpUITests */,
+				C2B7D99B26D3F15500BE05DF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C2B7D99B26D3F15500BE05DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C2B7D99A26D3F15500BE05DF /* Walp.app */,
+				C2B7D9B026D3F1A000BE05DF /* WalpTests.xctest */,
+				C2B7D9BB26D3F1A100BE05DF /* WalpUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C2B7D99C26D3F15500BE05DF /* Walp */ = {
+			isa = PBXGroup;
+			children = (
+				C2CCF53E270A103900D4EF80 /* Controller */,
+				C2CCF53D270A103000D4EF80 /* View */,
+				C2CCF53C270A100F00D4EF80 /* Model */,
+				C2B7D99D26D3F15500BE05DF /* AppDelegate.swift */,
+				C2B7D99F26D3F15500BE05DF /* SceneDelegate.swift */,
+				C2B7D9A126D3F15500BE05DF /* ViewController.swift */,
+				C2B7D9A326D3F15600BE05DF /* Main.storyboard */,
+				C2B7D9A626D3F1A000BE05DF /* Assets.xcassets */,
+				C2B7D9A826D3F1A000BE05DF /* LaunchScreen.storyboard */,
+				C2B7D9AB26D3F1A000BE05DF /* Info.plist */,
+			);
+			path = Walp;
+			sourceTree = "<group>";
+		};
+		C2B7D9B326D3F1A000BE05DF /* WalpTests */ = {
+			isa = PBXGroup;
+			children = (
+				C2B7D9B426D3F1A100BE05DF /* WalpTests.swift */,
+				C2B7D9B626D3F1A100BE05DF /* Info.plist */,
+			);
+			path = WalpTests;
+			sourceTree = "<group>";
+		};
+		C2B7D9BE26D3F1A100BE05DF /* WalpUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C2B7D9BF26D3F1A100BE05DF /* WalpUITests.swift */,
+				C2B7D9C126D3F1A100BE05DF /* Info.plist */,
+			);
+			path = WalpUITests;
+			sourceTree = "<group>";
+		};
+		C2CCF53C270A100F00D4EF80 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C2CCF53F270A123200D4EF80 /* UnsplashAPI.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C2CCF53D270A103000D4EF80 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C2CCF53E270A103900D4EF80 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C2B7D99926D3F15500BE05DF /* Walp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2B7D9C426D3F1A100BE05DF /* Build configuration list for PBXNativeTarget "Walp" */;
+			buildPhases = (
+				C2B7D99626D3F15500BE05DF /* Sources */,
+				C2B7D99726D3F15500BE05DF /* Frameworks */,
+				C2B7D99826D3F15500BE05DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Walp;
+			productName = Walp;
+			productReference = C2B7D99A26D3F15500BE05DF /* Walp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C2B7D9AF26D3F1A000BE05DF /* WalpTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2B7D9C726D3F1A100BE05DF /* Build configuration list for PBXNativeTarget "WalpTests" */;
+			buildPhases = (
+				C2B7D9AC26D3F1A000BE05DF /* Sources */,
+				C2B7D9AD26D3F1A000BE05DF /* Frameworks */,
+				C2B7D9AE26D3F1A000BE05DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C2B7D9B226D3F1A000BE05DF /* PBXTargetDependency */,
+			);
+			name = WalpTests;
+			productName = WalpTests;
+			productReference = C2B7D9B026D3F1A000BE05DF /* WalpTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C2B7D9BA26D3F1A100BE05DF /* WalpUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2B7D9CA26D3F1A100BE05DF /* Build configuration list for PBXNativeTarget "WalpUITests" */;
+			buildPhases = (
+				C2B7D9B726D3F1A100BE05DF /* Sources */,
+				C2B7D9B826D3F1A100BE05DF /* Frameworks */,
+				C2B7D9B926D3F1A100BE05DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C2B7D9BD26D3F1A100BE05DF /* PBXTargetDependency */,
+			);
+			name = WalpUITests;
+			productName = WalpUITests;
+			productReference = C2B7D9BB26D3F1A100BE05DF /* WalpUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C2B7D99226D3F15500BE05DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Ali Safari";
+				TargetAttributes = {
+					C2B7D99926D3F15500BE05DF = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					C2B7D9AF26D3F1A000BE05DF = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = C2B7D99926D3F15500BE05DF;
+					};
+					C2B7D9BA26D3F1A100BE05DF = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = C2B7D99926D3F15500BE05DF;
+					};
+				};
+			};
+			buildConfigurationList = C2B7D99526D3F15500BE05DF /* Build configuration list for PBXProject "Walp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C2B7D99126D3F15400BE05DF;
+			productRefGroup = C2B7D99B26D3F15500BE05DF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C2B7D99926D3F15500BE05DF /* Walp */,
+				C2B7D9AF26D3F1A000BE05DF /* WalpTests */,
+				C2B7D9BA26D3F1A100BE05DF /* WalpUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C2B7D99826D3F15500BE05DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2B7D9AA26D3F1A000BE05DF /* LaunchScreen.storyboard in Resources */,
+				C2B7D9A726D3F1A000BE05DF /* Assets.xcassets in Resources */,
+				C2B7D9A526D3F15600BE05DF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2B7D9AE26D3F1A000BE05DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2B7D9B926D3F1A100BE05DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C2B7D99626D3F15500BE05DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2CCF540270A123200D4EF80 /* UnsplashAPI.swift in Sources */,
+				C2B7D9A226D3F15600BE05DF /* ViewController.swift in Sources */,
+				C2B7D99E26D3F15500BE05DF /* AppDelegate.swift in Sources */,
+				C2B7D9A026D3F15500BE05DF /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2B7D9AC26D3F1A000BE05DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2B7D9B526D3F1A100BE05DF /* WalpTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2B7D9B726D3F1A100BE05DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2B7D9C026D3F1A100BE05DF /* WalpUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C2B7D9B226D3F1A000BE05DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C2B7D99926D3F15500BE05DF /* Walp */;
+			targetProxy = C2B7D9B126D3F1A000BE05DF /* PBXContainerItemProxy */;
+		};
+		C2B7D9BD26D3F1A100BE05DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C2B7D99926D3F15500BE05DF /* Walp */;
+			targetProxy = C2B7D9BC26D3F1A100BE05DF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C2B7D9A326D3F15600BE05DF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2B7D9A426D3F15600BE05DF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C2B7D9A826D3F1A000BE05DF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2B7D9A926D3F1A000BE05DF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C2B7D9C226D3F1A100BE05DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C2B7D9C326D3F1A100BE05DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C2B7D9C526D3F1A100BE05DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Walp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Safari-Studio.Walp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C2B7D9C626D3F1A100BE05DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Walp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Safari-Studio.Walp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C2B7D9C826D3F1A100BE05DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WalpTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Safari-Studio.WalpTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Walp.app/Walp";
+			};
+			name = Debug;
+		};
+		C2B7D9C926D3F1A100BE05DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WalpTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Safari-Studio.WalpTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Walp.app/Walp";
+			};
+			name = Release;
+		};
+		C2B7D9CB26D3F1A100BE05DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WalpUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Safari-Studio.WalpUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Walp;
+			};
+			name = Debug;
+		};
+		C2B7D9CC26D3F1A100BE05DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WalpUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Safari-Studio.WalpUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Walp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C2B7D99526D3F15500BE05DF /* Build configuration list for PBXProject "Walp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2B7D9C226D3F1A100BE05DF /* Debug */,
+				C2B7D9C326D3F1A100BE05DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2B7D9C426D3F1A100BE05DF /* Build configuration list for PBXNativeTarget "Walp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2B7D9C526D3F1A100BE05DF /* Debug */,
+				C2B7D9C626D3F1A100BE05DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2B7D9C726D3F1A100BE05DF /* Build configuration list for PBXNativeTarget "WalpTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2B7D9C826D3F1A100BE05DF /* Debug */,
+				C2B7D9C926D3F1A100BE05DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2B7D9CA26D3F1A100BE05DF /* Build configuration list for PBXNativeTarget "WalpUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2B7D9CB26D3F1A100BE05DF /* Debug */,
+				C2B7D9CC26D3F1A100BE05DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C2B7D99226D3F15500BE05DF /* Project object */;
+}
