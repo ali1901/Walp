@@ -10,6 +10,14 @@ import Foundation
 
 class PhotoStore {
     
+    var results = [Result]() {
+        didSet {
+            for item in results {
+                print("Item availibe: \(item)")
+            }
+        }
+    }
+    
     private let session: URLSession = {
         let config = URLSessionConfiguration.default
         return URLSession(configuration: config)
@@ -22,6 +30,12 @@ class PhotoStore {
 //        request.setValue("tenet", forHTTPHeaderField: "query")
         let task = session.dataTask(with: request) {(data, response, error) in
             if let jsonData = data {
+                do {
+                let results = try JSONDecoder().decode(Results.self, from: jsonData)
+                    self.results.append(contentsOf: results.results)
+                } catch {
+                    print("Error decoding data.\\\\\\\\\\\\\\")
+                }
                 let jsonString = String(data: jsonData, encoding: .utf8)
                 print(jsonString)
                 print("-----------------------------")
