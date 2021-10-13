@@ -59,4 +59,14 @@ struct UnsplashAPI {
     static var randomPhotoURL: URL {
         return unsplashURL(endPoint: .random, parameters: nil)
     }
+    
+    public static func photos(from jsonData: Data) -> Result<[Photo], Error> {
+        do {
+            let decoder = JSONDecoder()
+            let response = try decoder.decode(Response.self, from: jsonData)
+            return .success(response.results)
+        } catch {
+            return .failure(error)
+        }
+    }
 }

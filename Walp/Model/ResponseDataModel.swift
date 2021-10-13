@@ -8,16 +8,12 @@
 
 import Foundation
 
-//struct SuccessResponse: Codable {
-//    let result: Results
-//}
-
-struct Results: Codable {
+struct Response: Codable {
     var total: Int
-    var results: [Result]
+    var results: [Photo]
 }
 
-struct Result: Codable {
+struct Photo: Codable {
     var id: String
     var urls: Urls
     var description: String?
