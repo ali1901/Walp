@@ -32,7 +32,7 @@ struct UnsplashAPI {
         var components = URLComponents(string: bu)!
         var queryItems = [URLQueryItem]()
         
-        let baseParams = ["orientation":"portrait"]
+        let baseParams = ["orientation":"landscape"]
         for (key, value) in baseParams {
             let item = URLQueryItem(name: key, value: value)
             queryItems.append(item)
