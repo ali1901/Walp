@@ -23,5 +23,13 @@ class CustomTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func update(displaying image: UIImage?) {
+        if let imgToDisply = image {
+            cellBackgroundImage.image = imgToDisply
+        } else {
+            cellBackgroundImage.image = nil
+        }
+    }
 
 }

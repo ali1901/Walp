@@ -13,10 +13,14 @@ struct Response: Codable {
     var results: [Photo]
 }
 
-struct Photo: Codable {
+struct Photo: Codable, Equatable {
     var id: String
     var urls: Urls
     var description: String?
+    
+    static func == (lhs: Photo, rhs: Photo) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 struct Urls: Codable {

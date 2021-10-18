@@ -12,10 +12,15 @@ class ViewController: UIViewController {
     
     let uKey = "0f47e3be92bb69eb63844b988c9c602efb99d314c8664d82e6393642652dfd80"
     let store = PhotoStore()
+    let tableViewDataSource = TableViewDataSource()
     var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports"]
     var searchQuery = ""
     var photos = [Photo]()
-    var images = [UIImage]()
+    var images = [UIImage]() {
+        didSet {
+            print("We're settttt brooooooo////////")
+        }
+    }
     var img = UIImage() {
         didSet {
             print("Ime set brooooooooooooo")
@@ -28,32 +33,43 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
-//        for item in cats {
-            store.searchPhotos(with: "snow") { (photoResults) in
+        tableView.dataSource = tableViewDataSource
+        for i in 0..<cats.count {
+            print(i, "----")
+            store.searchPhotos(with: cats[i]) { (photoResults) in
                 switch photoResults {
                 case let .success(photo):
                     print("Succsefullt found \(photo[0].urls.full)")
-                    self.photos.append(contentsOf: photo)
-                    self.store.fetchImage(for: self.photos.first!) { (imgRes) in
-                        switch imgRes {
-                        case let .success(img):
-                            OperationQueue.main.addOperation {
-                                self.img = img
-                                self.images.append(img)
-                                print("Image set'//'/'/'/'/'/'/'/'/'/'/'/'/'/'/'/")
-                                self.tableView.reloadData()
-                            }
-                            self.img = img
-                        case let .failure(err):
-                            print ("Could not fetch the image.: \(err)")
-                        }
-                    }
+                    self.photos.append(photo[0])
+                    self.tableViewDataSource.photos.append(photo[0])
+//                    self.tableView.reloadData()
+                    print(i," ------ ",self.photos.count)
+//                    self.store.fetchImage(for: self.photos[i]) { (imgRes) in
+//                        switch imgRes {
+//                        case let .success(img):
+//                            OperationQueue.main.addOperation {
+//                                self.img = img
+//                                self.images.append(img)
+//                                print("Image set'//'/'/'/'/'/'/'/'/'/'/'/'/'/'/'/")
+//                                self.tableView.reloadData()
+//                            }
+//                            self.img = img
+//                        case let .failure(err):
+//                            print ("Could not fetch the image.: \(err)")
+//                        }
+//                    }
                     
                 case let .failure(error):
                     print("Couldn't find any photos: \(error)")
+                    self.tableViewDataSource.photos.removeAll()
                 }
+                OperationQueue.main.addOperation {
+//                    self.tableView.reloadSections(IndexSet(integer: 0), with: UITableView.RowAnimation.fade)
+                    self.tableView.reloadData()
+                }
+                
             }
-//        }
+        }
         for item in photos {
             print("Avalible \(item.id)")
         }
@@ -74,26 +90,25 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let photo = tableViewDataSource.photos[indexPath.row]
+        store.fetchImage(for: photo) { (result) in
+            guard let photoIndex = self.tableViewDataSource.photos.firstIndex(of: photo),
+                case let .success(image) = result else {
+                    return
+            }
+            let photoIndexPath = IndexPath(row: photoIndex, section: 0)
+            
+            if let cell = self.tableView.cellForRow(at: photoIndexPath) as? CustomTableViewCell {
+                cell.update(displaying: image)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.searchQuery = cats[indexPath.row]
     }
 }
 
-extension ViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cats.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
-        cell.titleLabel.text = cats[indexPath.row]
-        OperationQueue.main.addOperation {
-            cell.cellBackgroundImage.image = self.img
-        }
-        
-        return cell
-    }
-    
-    //cell.cellBackgroundImage.image =
-}
 

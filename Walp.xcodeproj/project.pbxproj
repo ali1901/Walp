@@ -21,6 +21,7 @@
 		C2CCF540270A123200D4EF80 /* UnsplashAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CCF53F270A123200D4EF80 /* UnsplashAPI.swift */; };
 		C2D49248270B42BF00AA6C9C /* PhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D49247270B42BF00AA6C9C /* PhotoStore.swift */; };
 		C2D4924A270B652900AA6C9C /* ResponseDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D49249270B652900AA6C9C /* ResponseDataModel.swift */; };
+		C2DCF816271DC6B000A20905 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCF815271DC6B000A20905 /* TableViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		C2CCF53F270A123200D4EF80 /* UnsplashAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashAPI.swift; sourceTree = "<group>"; };
 		C2D49247270B42BF00AA6C9C /* PhotoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStore.swift; sourceTree = "<group>"; };
 		C2D49249270B652900AA6C9C /* ResponseDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDataModel.swift; sourceTree = "<group>"; };
+		C2DCF815271DC6B000A20905 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				C2B7D9A126D3F15500BE05DF /* ViewController.swift */,
 				C2C06949271478600061FBEA /* SplashController.swift */,
 				C2C84AA6271B34E40009F7D8 /* ImagesCollectionViewController.swift */,
+				C2DCF815271DC6B000A20905 /* TableViewDataSource.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				C2C0694C271483660061FBEA /* CustomTableViewCell.swift in Sources */,
 				C2D4924A270B652900AA6C9C /* ResponseDataModel.swift in Sources */,
 				C2B7D9A226D3F15600BE05DF /* ViewController.swift in Sources */,
+				C2DCF816271DC6B000A20905 /* TableViewDataSource.swift in Sources */,
 				C2B7D99E26D3F15500BE05DF /* AppDelegate.swift in Sources */,
 				C2C0694A271478600061FBEA /* SplashController.swift in Sources */,
 				C2B7D9A026D3F15500BE05DF /* SceneDelegate.swift in Sources */,
