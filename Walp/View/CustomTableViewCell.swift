@@ -26,7 +26,9 @@ class CustomTableViewCell: UITableViewCell {
     
     func update(displaying image: UIImage?) {
         if let imgToDisply = image {
-            cellBackgroundImage.image = imgToDisply
+            OperationQueue.main.addOperation {
+                self.cellBackgroundImage.image = imgToDisply
+            }
         } else {
             cellBackgroundImage.image = nil
         }

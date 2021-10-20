@@ -16,16 +16,9 @@ class ViewController: UIViewController {
     var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports"]
     var searchQuery = ""
     var photos = [Photo]()
-    var images = [UIImage]() {
-        didSet {
-            print("We're settttt brooooooo////////")
-        }
-    }
-    var img = UIImage() {
-        didSet {
-            print("Ime set brooooooooooooo")
-        }
-    }
+    var images = [UIImage]()
+    
+    var img = UIImage()
     var fetchedImages = [UIImage]()
     @IBOutlet weak var tableView: UITableView!
     
@@ -34,31 +27,15 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
 
         tableView.dataSource = tableViewDataSource
-        for i in 0..<cats.count {
-            print(i, "----")
-            store.searchPhotos(with: cats[i]) { (photoResults) in
+//        for i in 0..<cats.count {
+//            print(i, "----")
+            store.searchPhotos(with: cats[1]) { (photoResults) in
                 switch photoResults {
                 case let .success(photo):
-                    print("Succsefullt found \(photo[0].urls.full)")
-                    self.photos.append(photo[0])
-                    self.tableViewDataSource.photos.append(photo[0])
-//                    self.tableView.reloadData()
-                    print(i," ------ ",self.photos.count)
-//                    self.store.fetchImage(for: self.photos[i]) { (imgRes) in
-//                        switch imgRes {
-//                        case let .success(img):
-//                            OperationQueue.main.addOperation {
-//                                self.img = img
-//                                self.images.append(img)
-//                                print("Image set'//'/'/'/'/'/'/'/'/'/'/'/'/'/'/'/")
-//                                self.tableView.reloadData()
-//                            }
-//                            self.img = img
-//                        case let .failure(err):
-//                            print ("Could not fetch the image.: \(err)")
-//                        }
-//                    }
-                    
+                    print("Succsefullt found \(photo[0].id)")
+//                    self.photos.append(contentsOf: photo)
+                    self.tableViewDataSource.photos.append(contentsOf: photo)
+                    print(" ------ ",self.photos.count)
                 case let .failure(error):
                     print("Couldn't find any photos: \(error)")
                     self.tableViewDataSource.photos.removeAll()
@@ -69,17 +46,17 @@ class ViewController: UIViewController {
                 }
                 
             }
-        }
-        for item in photos {
-            print("Avalible \(item.id)")
-        }
+//        }
+//        for item in photos {
+//            print("Avalible \(item.id)")
+//        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showImages":
             if let nvc = segue.destination as? ImagesCollectionViewController {
-                nvc.searchQuery = self.searchQuery
+                nvc.searchQuery = searchQuery
             }
         default:
             if let nvc = segue.destination as? ImagesCollectionViewController {
@@ -100,14 +77,19 @@ extension ViewController: UITableViewDelegate {
             }
             let photoIndexPath = IndexPath(row: photoIndex, section: 0)
             
-            if let cell = self.tableView.cellForRow(at: photoIndexPath) as? CustomTableViewCell {
-                cell.update(displaying: image)
+            OperationQueue.main.addOperation{
+                if let cell = self.tableView.cellForRow(at: photoIndexPath) as? CustomTableViewCell {
+                    cell.update(displaying: image)
+                }
             }
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.searchQuery = cats[indexPath.row]
+        print("-----------------\(indexPath.item): \(cats[indexPath.item])")
+        
+        self.searchQuery = cats[indexPath.item]
+        self.performSegue(withIdentifier: "showImages", sender: self)
     }
 }
 
