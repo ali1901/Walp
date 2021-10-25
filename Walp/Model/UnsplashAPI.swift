@@ -18,6 +18,7 @@ struct UnsplashAPI {
     private static let apiKey = "0f47e3be92bb69eb63844b988c9c602efb99d314c8664d82e6393642652dfd80"
     static let theKEY = "Client-ID 0f47e3be92bb69eb63844b988c9c602efb99d314c8664d82e6393642652dfd80"
     private static var queryToSearch = ""
+    private static var orient = ""
     
     private static func unsplashURL(endPoint: endPoint, parameters: [String:String]?) -> URL {
         var bu = ""
@@ -32,7 +33,7 @@ struct UnsplashAPI {
         var components = URLComponents(string: bu)!
         var queryItems = [URLQueryItem]()
         
-        let baseParams = ["orientation":"landscape"]
+        let baseParams = ["per_page": "20"]
         for (key, value) in baseParams {
             let item = URLQueryItem(name: key, value: value)
             queryItems.append(item)
@@ -48,12 +49,17 @@ struct UnsplashAPI {
         return components.url!
     }
     
-    public static func searchQuery(query: String) -> URL {
+    public static func searchQuery(query: String, orient: Bool) -> URL {
+        if orient {
+            self.orient = "portrait"
+        } else {
+            self.orient = "landscape"
+        }
         queryToSearch = query
         return searchPhotoURL
     }
     private static var searchPhotoURL: URL {
-        return unsplashURL(endPoint: .search, parameters: ["query":queryToSearch])
+        return unsplashURL(endPoint: .search, parameters: ["query":queryToSearch, "orientation":orient])
     }
     
     static var randomPhotoURL: URL {

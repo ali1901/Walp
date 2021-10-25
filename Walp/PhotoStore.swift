@@ -24,8 +24,8 @@ class PhotoStore {
         return URLSession(configuration: config)
     }()
     
-    public func searchPhotos(with query: String, compleition: @escaping (Result<[Photo], Error>) -> Void) {
-        let url = UnsplashAPI.searchQuery(query: query)
+    public func searchPhotos(with query: String, orient: Bool, compleition: @escaping (Result<[Photo], Error>) -> Void) {
+        let url = UnsplashAPI.searchQuery(query: query, orient: orient)
         var request = URLRequest(url: url)
         request.setValue(UnsplashAPI.theKEY, forHTTPHeaderField: "Authorization")
         let task = session.dataTask(with: request) {(data, response, error) in

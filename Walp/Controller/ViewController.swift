@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         tableView.dataSource = tableViewDataSource
 //        for i in 0..<cats.count {
 //            print(i, "----")
-            store.searchPhotos(with: cats[1]) { (photoResults) in
+        store.searchPhotos(with: cats[1], orient: false) { (photoResults) in
                 switch photoResults {
                 case let .success(photo):
                     print("Succsefullt found \(photo[0].id)")
