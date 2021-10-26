@@ -128,10 +128,55 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="U9m-cf-Bge"/>
+                    <connections>
+                        <segue destination="iNf-ZO-fTQ" kind="show" identifier="ShowImage" id="NbU-1j-IeQ"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="85k-sH-YOG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1868.1159420289857" y="138.61607142857142"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="GuN-cX-QeS">
+            <objects>
+                <viewController id="iNf-ZO-fTQ" customClass="ImageViewController" customModule="Walp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OoZ-7t-Z1m" customClass="ImageVCView" customModule="Walp" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zze-Qo-Z78">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXl-pN-j8k">
+                                <rect key="frame" x="179" y="800" width="56" height="42"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Set it"/>
+                                <connections>
+                                    <action selector="setAsWalpWithSender:" destination="iNf-ZO-fTQ" eventType="touchUpInside" id="0iq-eX-QOy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Zze-Qo-Z78" firstAttribute="leading" secondItem="jAE-TV-ENt" secondAttribute="leading" id="Eva-Uo-hhU"/>
+                            <constraint firstItem="jAE-TV-ENt" firstAttribute="bottom" secondItem="Zze-Qo-Z78" secondAttribute="bottom" id="NTb-Py-4Er"/>
+                            <constraint firstItem="Zze-Qo-Z78" firstAttribute="top" secondItem="jAE-TV-ENt" secondAttribute="top" id="gzK-8B-F18"/>
+                            <constraint firstItem="IXl-pN-j8k" firstAttribute="centerX" secondItem="OoZ-7t-Z1m" secondAttribute="centerX" id="hb7-gH-06X"/>
+                            <constraint firstItem="jAE-TV-ENt" firstAttribute="trailing" secondItem="Zze-Qo-Z78" secondAttribute="trailing" id="s5t-lO-Jfx"/>
+                            <constraint firstItem="jAE-TV-ENt" firstAttribute="bottom" secondItem="IXl-pN-j8k" secondAttribute="bottom" constant="20" id="u2V-eF-3Uq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jAE-TV-ENt"/>
+                        <connections>
+                            <outlet property="imageView" destination="Zze-Qo-Z78" id="mbZ-Pg-vmZ"/>
+                            <outlet property="setButton" destination="IXl-pN-j8k" id="otN-xu-0c0"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="mUR-gX-7kl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e76-oA-n5t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2694" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZOo-91-Cqm">

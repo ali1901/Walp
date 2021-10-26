@@ -15,12 +15,11 @@ class ImagesCollectionViewController: UICollectionViewController {
     private let store = PhotoStore()
     var searchQuery = ""
     let dataSource = CollectionViewDataSource()
+    var images = [UIImage]()
+    var selecteIP = 0
+    var image = UIImage()
     
-    private let sectionInsets = UIEdgeInsets(
-    top: 10.0,
-    left: 20.0,
-    bottom: 50.0,
-    right: 20.0)
+    private let sectionInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 50.0, right: 20.0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,12 +48,27 @@ class ImagesCollectionViewController: UICollectionViewController {
             guard let photoIndex = self.dataSource.photos.firstIndex(of: photo), case let .success(img) = image else {
                 return
             }
+            self.images.append(img)
             let photoIndexPath = IndexPath(item: photoIndex, section: 0)
             OperationQueue.main.addOperation {
                 if let cell = collectionView.cellForItem(at: photoIndexPath) as? CustomCollectionViewCell {
                     cell.update(diplaying: img)
                 }
             }
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? CustomCollectionViewCell
+        if let img = cell?.imageView.image {
+            image = img
+        }
+        performSegue(withIdentifier: "ShowImage", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nextVC = segue.destination as? ImageViewController {
+            nextVC.image = image
         }
     }
     
