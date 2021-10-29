@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let uKey = "0f47e3be92bb69eb63844b988c9c602efb99d314c8664d82e6393642652dfd80"
     let store = PhotoStore()
     let tableViewDataSource = TableViewDataSource()
     var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports"]
@@ -31,10 +30,12 @@ class ViewController: UIViewController {
 //            print(i, "----")
         store.searchPhotos(with: cats[1], orient: false) { (photoResults) in
                 switch photoResults {
-                case let .success(photo):
-                    print("Succsefullt found \(photo[0].id)")
-//                    self.photos.append(contentsOf: photo)
-                    self.tableViewDataSource.photos.append(contentsOf: photo)
+                case let .success(photos):
+                    print("Succsefullt found \(photos[0].id)")
+//                    self.photos.append(contentsOf: photos)
+                    OperationQueue.main.addOperation {
+                        self.tableViewDataSource.photos.append(contentsOf: photos)
+                    }
                     print(" ------ ",self.photos.count)
                 case let .failure(error):
                     print("Couldn't find any photos: \(error)")
@@ -69,17 +70,20 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let photo = tableViewDataSource.photos[indexPath.row]
-        store.fetchImage(for: photo) { (result) in
-            guard let photoIndex = self.tableViewDataSource.photos.firstIndex(of: photo),
-                case let .success(image) = result else {
-                    return
-            }
-            let photoIndexPath = IndexPath(row: photoIndex, section: 0)
-            
-            OperationQueue.main.addOperation{
-                if let cell = self.tableView.cellForRow(at: photoIndexPath) as? CustomTableViewCell {
-                    cell.update(displaying: image)
+        
+        if self.tableViewDataSource.photos.count > 0 {
+            let photo = self.tableViewDataSource.photos[indexPath.row]
+            self.store.fetchImage(for: photo) { (result) in
+                guard let photoIndex = self.tableViewDataSource.photos.firstIndex(of: photo),
+                    case let .success(image) = result else {
+                        return
+                }
+                let photoIndexPath = IndexPath(row: photoIndex, section: 0)
+                
+                OperationQueue.main.addOperation{
+                    if let cell = self.tableView.cellForRow(at: photoIndexPath) as? CustomTableViewCell {
+                        cell.update(displaying: image)
+                    }
                 }
             }
         }

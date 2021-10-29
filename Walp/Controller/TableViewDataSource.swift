@@ -19,15 +19,19 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return photos.count
+        return cats.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
-        cell.titleLabel.text = photos[indexPath.row].id
-        
-        cell.update(displaying: nil)
-        return cell
+        if indexPath.row > photos.count-1 {
+            return UITableViewCell()
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
+            cell.titleLabel.text = cats[indexPath.row]
+            
+            cell.update(displaying: nil)
+            return cell
+        }
     }
     
 }
