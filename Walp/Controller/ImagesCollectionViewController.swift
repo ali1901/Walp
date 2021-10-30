@@ -20,6 +20,7 @@ class ImagesCollectionViewController: UICollectionViewController {
     var image = UIImage()
     
     private let sectionInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 50.0, right: 20.0)
+    private let itemsPerRow: CGFloat = 2
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,9 +108,9 @@ class ImagesCollectionViewController: UICollectionViewController {
 extension ImagesCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
-      let paddingSpace = sectionInsets.left * 3
+      let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
       let availableWidth = view.frame.width - paddingSpace
-      let widthPerItem = availableWidth / 2
+      let widthPerItem = availableWidth / itemsPerRow
       
       return CGSize(width: widthPerItem, height: widthPerItem)
     }

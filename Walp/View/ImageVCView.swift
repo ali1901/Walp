@@ -12,6 +12,7 @@ class ImageVCView: UIView {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var setButton: UIButton!
+    @IBOutlet weak var previewButton: UIButton!
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
