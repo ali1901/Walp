@@ -89,9 +89,7 @@ extension ViewController: UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("-----------------\(indexPath.item): \(cats[indexPath.item])")
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
         self.searchQuery = cats[indexPath.item]
         self.performSegue(withIdentifier: "showImages", sender: self)
     }

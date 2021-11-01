@@ -35,12 +35,43 @@ class ImageViewController: UIViewController {
     }
     
     @IBAction func preview(sender: UIButton) {
-        let frame = UIApplication.shared.windows.first!.frame
+        
         UIView.animate(withDuration: 0.5) {
-            self.fullScreenPhoto.frame = frame
-            self.fullScreenPhoto.image = self.image
-            self.fullScreenPhoto.contentMode = .scaleAspectFill
+            self.navigationController?.navigationBar.alpha = 0
+            self.imageVCView.setButton.isHidden = true
+            self.imageVCView.previewButton.isHidden = true
         }
     }
+    
+    @IBAction func imageTapped(sender: UITapGestureRecognizer) {
+        print("//////Image tapped")
+        if navigationController?.navigationBar.alpha == 0 {
+            UIView.animate(withDuration: 0.5) {
+                self.navigationController?.navigationBar.alpha = 1
+                self.imageVCView.setButton.isHidden = false
+                self.imageVCView.previewButton.isHidden = false
+            }
+        }
+    }
+    
+//    @IBAction func imageTapped(sender: UITapGestureRecognizer) {
+//        let imageView = sender.view as! UIImageView
+//        let newImageView = UIImageView(image: imageView.image)
+//        newImageView.frame = UIScreen.main.bounds
+//        newImageView.backgroundColor = .blackColor()
+//        newImageView.contentMode = .ScaleAspectFit
+//        newImageView.userInteractionEnabled = true
+//        let tap = UITapGestureRecognizer(target: self, action: "dismissFullscreenImage:")
+//        newImageView.addGestureRecognizer(tap)
+//        self.view.addSubview(newImageView)
+//        self.navigationController?.isNavigationBarHidden = true
+//        self.tabBarController?.tabBar.isHidden = true
+//    }
+//
+//    func dismissFullscreenImage(sender: UITapGestureRecognizer) {
+//        self.navigationController?.isNavigationBarHidden = false
+//        self.tabBarController?.tabBar.isHidden = false
+//        sender.view?.removeFromSuperview()
+//    }
 
 }

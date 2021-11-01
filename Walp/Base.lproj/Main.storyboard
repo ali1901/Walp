@@ -146,6 +146,10 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zze-Qo-Z78">
                                 <rect key="frame" x="0.0" y="-88" width="414" height="896"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qag-8r-83a" appends="YES" id="2hI-da-9eC"/>
+                                </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXl-pN-j8k">
                                 <rect key="frame" x="179" y="712" width="56" height="42"/>
@@ -187,6 +191,11 @@
                     <navigationItem key="navigationItem" id="mUR-gX-7kl"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e76-oA-n5t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="qag-8r-83a">
+                    <connections>
+                        <action selector="imageTappedWithSender:" destination="iNf-ZO-fTQ" id="K6I-24-euB"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2692.753623188406" y="138.61607142857142"/>
         </scene>
