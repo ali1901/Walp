@@ -44,7 +44,7 @@ class ImageViewController: UIViewController {
     }
     
     @IBAction func imageTapped(sender: UITapGestureRecognizer) {
-        print("//////Image tapped")
+        
         if navigationController?.navigationBar.alpha == 0 {
             UIView.animate(withDuration: 0.5) {
                 self.navigationController?.navigationBar.alpha = 1
@@ -53,25 +53,5 @@ class ImageViewController: UIViewController {
             }
         }
     }
-    
-//    @IBAction func imageTapped(sender: UITapGestureRecognizer) {
-//        let imageView = sender.view as! UIImageView
-//        let newImageView = UIImageView(image: imageView.image)
-//        newImageView.frame = UIScreen.main.bounds
-//        newImageView.backgroundColor = .blackColor()
-//        newImageView.contentMode = .ScaleAspectFit
-//        newImageView.userInteractionEnabled = true
-//        let tap = UITapGestureRecognizer(target: self, action: "dismissFullscreenImage:")
-//        newImageView.addGestureRecognizer(tap)
-//        self.view.addSubview(newImageView)
-//        self.navigationController?.isNavigationBarHidden = true
-//        self.tabBarController?.tabBar.isHidden = true
-//    }
-//
-//    func dismissFullscreenImage(sender: UITapGestureRecognizer) {
-//        self.navigationController?.isNavigationBarHidden = false
-//        self.tabBarController?.tabBar.isHidden = false
-//        sender.view?.removeFromSuperview()
-//    }
 
 }

@@ -24,7 +24,9 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellID = "CVCell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! CustomCollectionViewCell
-        
+//        cell.contentView.layer.cornerRadius = 10.0
+        cell.layer.cornerRadius = 10.0
+        cell.layer.backgroundColor = #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1)
         cell.update(diplaying: nil)
         return cell
     }
