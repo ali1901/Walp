@@ -19,7 +19,7 @@ class ImagesCollectionViewController: UICollectionViewController {
     var selecteIP = 0
     var image = UIImage()
     
-    private let sectionInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 50.0, right: 20.0)
+    private let sectionInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 20.0)
     private let itemsPerRow: CGFloat = 2
 
     override func viewDidLoad() {

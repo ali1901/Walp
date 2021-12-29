@@ -16,7 +16,6 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
         }
     }
     var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports"]
-
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cats.count
@@ -28,7 +27,8 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
             cell.titleLabel.text = cats[indexPath.row]
-            
+            cell.layer.cornerRadius = 15.0
+            cell.layer.backgroundColor = #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1)
             cell.update(displaying: nil)
             return cell
         }
