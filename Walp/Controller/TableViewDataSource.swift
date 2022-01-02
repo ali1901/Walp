@@ -15,7 +15,7 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
             print("New Element------------------:\(photos.last!.id)")
         }
     }
-    var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports", "Sea", "Jungle", "Mountain", "Hustle", "City", "Car"]
+    var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports", "Sea", "Jungle", "Mountain", "Beach", "City", "Car"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cats.count

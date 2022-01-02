@@ -13,7 +13,11 @@ private let reuseIdentifier = "Cell"
 class ImagesCollectionViewController: UICollectionViewController {
     
     private let store = PhotoStore()
-    var searchQuery = ""
+    var searchQuery = "" {
+        didSet {
+            navigationItem.title = searchQuery
+        }
+    }
     let dataSource = CollectionViewDataSource()
     var images = [UIImage]()
     var selecteIP = 0
@@ -28,7 +32,7 @@ class ImagesCollectionViewController: UICollectionViewController {
         collectionView.dataSource = dataSource
         collectionView.delegate = self
         
-        self.navigationItem.title = searchQuery
+//        self.navigationItem.title = searchQuery
         
         print(searchQuery)
         fetchData()

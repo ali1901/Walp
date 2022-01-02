@@ -18,7 +18,7 @@ class ImageViewController: UIViewController {
     }
     let fullScreenPhoto = UIImageView()
     
-    var image = UIImage()
+    var image = UIImage() 
 
     override func viewDidLoad() {
         super.viewDidLoad()

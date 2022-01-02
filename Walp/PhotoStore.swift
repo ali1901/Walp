@@ -11,6 +11,8 @@ import UIKit
 
 class PhotoStore {
     
+    let imageStore = ImageStore()
+    
     var results = [Photo]() {
         didSet {
             for item in results {
@@ -46,10 +48,22 @@ class PhotoStore {
     
     public func fetchImage(for photo: Photo, with compelition: @escaping (Result<UIImage, Error>) -> Void) {
       
+        let photoKey = photo.id
+        if let image = imageStore.image(forKey: photoKey) {
+            OperationQueue.main.addOperation {
+                compelition(.success(image))
+            }
+            return
+        }
+        
         let imageUrl = URL(string: photo.urls.full)
         let request = URLRequest(url: imageUrl!)
         let task = session.dataTask(with: request) { (data, response, error) in
             let result = self.processImageRequest(data: data, error: error)
+            
+            if case let .success(image) = result {
+                self.imageStore.setImage(image, forKey: photoKey)
+            }
             compelition(result)
         }
         task.resume()
