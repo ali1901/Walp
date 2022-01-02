@@ -31,5 +31,4 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
         return cell
     }
     
-    
 }

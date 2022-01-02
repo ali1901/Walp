@@ -28,21 +28,14 @@ class ImagesCollectionViewController: UICollectionViewController {
         collectionView.dataSource = dataSource
         collectionView.delegate = self
         
-        print(searchQuery)
-        store.searchPhotos(with: searchQuery, orient: true) { (result) in
-            switch result {
-            case let .success(photo):
-                self.dataSource.photos.append(contentsOf: photo)
-            case let .failure(error):
-                print("Couldn't get the images for you: \(error)")
-            }
-            OperationQueue.main.addOperation {
-                self.collectionView.reloadData()
-            }
-        }
+        self.navigationItem.title = searchQuery
         
+        print(searchQuery)
+        fetchData()
     }
-    
+
+
+    // MARK: CollectionViewDelegate methods
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let photo = dataSource.photos[indexPath.item]
         store.fetchImage(for: photo) { (image) in
@@ -56,6 +49,10 @@ class ImagesCollectionViewController: UICollectionViewController {
                     cell.update(diplaying: img)
                 }
             }
+        }
+        
+        if indexPath.row == dataSource.photos.count-1 { //Checking if the last cell is being displayed; calling server for more data
+            fetchData()
         }
     }
     
@@ -73,35 +70,25 @@ class ImagesCollectionViewController: UICollectionViewController {
         }
     }
     
-    override func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
-        print("did reach to the topppppppp----------")
-    }
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
-            //reach bottom
-            print("did reach to the topppppppp----------") //Gets called many times
-//            store.searchPhotos(with: searchQuery, orient: true) { (result) in
-//                switch result {
-//                case let .success(photo):
-//                    self.dataSource.photos.append(contentsOf: photo)
-//                case let .failure(error):
-//                    print("Couldn't get the images for you: \(error)")
-//                }
-//                OperationQueue.main.addOperation {
-//                    self.collectionView.reloadData()
-//                }
-//            }
-        }
-
-        if (scrollView.contentOffset.y < 0){
-            //reach top
-        }
-
-        if (scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y < (scrollView.contentSize.height - scrollView.frame.size.height)){
-            //not top and not bottom
+    // MARK: Custom Functions
+    
+    private func fetchData() {
+        store.searchPhotos(with: searchQuery, orient: true) { (result) in
+            switch result {
+            case let .success(photo):
+                self.dataSource.photos.append(contentsOf: photo)
+            case let .failure(error):
+                print("Couldn't get the images for you: \(error)")
+            }
+            OperationQueue.main.addOperation {
+                self.collectionView.reloadData()
+            }
         }
     }
-
+    
+    private func fetchImageFromData() {
+        
+    }
 }
 
 

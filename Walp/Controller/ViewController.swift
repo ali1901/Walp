@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     let store = PhotoStore()
     let tableViewDataSource = TableViewDataSource()
-    var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports"]
+    var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports", "Sea", "Jungle", "Mountain", "Beach", "City", "Car"]
     var searchQuery = ""
     var photos = [Photo]()
     var images = [UIImage]()
