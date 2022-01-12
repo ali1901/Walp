@@ -31,10 +31,7 @@ class ImagesCollectionViewController: UICollectionViewController {
         
         collectionView.dataSource = dataSource
         collectionView.delegate = self
-        
-//        self.navigationItem.title = searchQuery
-        
-        print(searchQuery)
+                
         fetchData()
     }
 
