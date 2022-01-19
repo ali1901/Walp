@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     let store = PhotoStore()
     let tableViewDataSource = TableViewDataSource()
     var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports", "Sea", "Jungle", "Mountain", "Beach", "City", "Car"]
+    let operationQueue = OperationQueue()
     var searchQuery = ""
     var photos = [Photo]()
     var images = [UIImage]()
@@ -26,31 +27,51 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
 
         tableView.dataSource = tableViewDataSource
-//        for i in 0..<cats.count {
-//            print(i, "----")
-        store.searchPhotos(with: cats[1], orient: false) { (photoResults) in
-                switch photoResults {
-                case let .success(photos):
-                    print("Succsefullt found \(photos[0].id)")
-//                    self.photos.append(contentsOf: photos)
-                    OperationQueue.main.addOperation {
-                        self.tableViewDataSource.photos.append(contentsOf: photos)
-                    }
-                    print(" ------ ",self.photos.count)
-                case let .failure(error):
-                    print("Couldn't find any photos: \(error)")
-                    self.tableViewDataSource.photos.removeAll()
-                }
-                OperationQueue.main.addOperation {
-//                    self.tableView.reloadSections(IndexSet(integer: 0), with: UITableView.RowAnimation.fade)
-                    self.tableView.reloadData()
-                }
-                
+        for i in 0..<cats.count {
+            operationQueue.addOperation {
+                self.fetchData(searchTerm: self.cats[i], index: i)
             }
-//        }
+//        store.searchPhotos(with: cats[1], orient: false) { (photoResults) in
+//                switch photoResults {
+//                case let .success(photos):
+//                    print("Succsefullt found \(photos[0].id)")
+////                    self.photos.append(contentsOf: photos)
+//                    OperationQueue.main.addOperation {
+//                        self.tableViewDataSource.photos.append(contentsOf: photos)
+//                    }
+//                    print(" ------ ",self.photos.count)
+//                case let .failure(error):
+//                    print("Couldn't find any photos: \(error)")
+//                    self.tableViewDataSource.photos.removeAll()
+//                }
+//                OperationQueue.main.addOperation {
+////                    self.tableView.reloadSections(IndexSet(integer: 0), with: UITableView.RowAnimation.fade)
+//                    self.tableView.reloadData()
+//                }
+//
+//            }
+        }
 //        for item in photos {
 //            print("Avalible \(item.id)")
 //        }
+    }
+    
+    private func fetchData(searchTerm: String, index: Int) {
+        store.searchPhotos(with: searchTerm, orient: false) { (photoResults) in
+            switch photoResults {
+            case let .success(photos):
+                print("***********************: \(searchTerm): \(photos.count), \(photos[0].id)")
+                OperationQueue.main.addOperation {
+                    self.tableViewDataSource.photos.append(photos[0])
+                }
+            case let .failure(error):
+                print("no photos were found: \(error)")
+                self.tableViewDataSource.photos.removeAll()
+            }
+            OperationQueue.main.addOperation {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
