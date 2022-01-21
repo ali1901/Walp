@@ -10,9 +10,29 @@ import UIKit
 
 class TableViewDataSource: NSObject, UITableViewDataSource {
     
+    var fetchedResponseArray = [[Int:Photo]]() {
+        didSet {
+            for item in fetchedResponseArray {
+                print(item.keys.description)
+            }
+            print("Got data successfully------------------")
+            //Mark - TO DO: Sorting the fetchedarray
+            fetchedResponseArray.sort{$0.keys.description < $1.keys.description}
+            for i in fetchedResponseArray.indices {
+                let value = fetchedResponseArray[i]
+                print(value.keys.description)
+                DispatchQueue.main.async {
+                    if let p = value[i] {
+                        self.photos.append(p)
+                    }
+                }
+            }
+        }
+    }
+    
     var photos = [Photo]() {
         didSet {
-            print("New Element------------------:\(photos.last!.id)")
+            
         }
     }
     var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports", "Sea", "Jungle", "Mountain", "Beach", "City", "Car"]

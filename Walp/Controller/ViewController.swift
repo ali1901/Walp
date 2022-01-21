@@ -13,9 +13,19 @@ class ViewController: UIViewController {
     let store = PhotoStore()
     let tableViewDataSource = TableViewDataSource()
     var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports", "Sea", "Jungle", "Mountain", "Beach", "City", "Car"]
-    let operationQueue = OperationQueue()
+
     let concurrentQueue = DispatchQueue(label: "CQ", attributes: .concurrent)
     let dispatchGroup = DispatchGroup()
+    var fetchedResponse = [[Int:Photo]]() {
+        didSet {
+            if fetchedResponse.count == cats.count {
+                print("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/ Data sent succesfully.")
+                fetchedResponse.sort{$0.keys.description < $1.keys.description}
+                self.tableViewDataSource.fetchedResponseArray = fetchedResponse
+            }
+        }
+    }
+    
     var searchQuery = ""
     var photos = [Photo]()
     var images = [UIImage]()
@@ -30,33 +40,30 @@ class ViewController: UIViewController {
 
         tableView.dataSource = tableViewDataSource
         for i in 0..<cats.count {
-//            operationQueue.addOperation {
-//                self.fetchData(searchTerm: self.cats[i], index: i)
-//            }
-            //dispatchGroup.enter()
-            concurrentQueue.async {
+
+//            concurrentQueue.async {
                 self.fetchData(searchTerm: self.cats[i], index: i)
-                //self.dispatchGroup.leave()
-            }
+//            }
 
         }
     }
     
     private func fetchData(searchTerm: String, index: Int) {
-        dispatchGroup.enter()
+        dispatchGroup.enter() //USED for adding concurrency to fetching data when calling this func multiple times
         store.searchPhotos(with: searchTerm, orient: false) { (photoResults) in
             switch photoResults {
             case let .success(photos):
                 print("***********************: \(searchTerm): \(photos.count), \(photos[0].id)")
                 OperationQueue.main.addOperation {
-                    self.tableViewDataSource.photos.append(photos[0])
-                    self.dispatchGroup.leave()
+                    self.fetchedResponse.append([index : photos[0]])
+//                    self.tableViewDataSource.photos.append(photos[0])
+                    self.dispatchGroup.leave() //USED for adding concurrency to fetching data when calling this func multiple times
                 }
             case let .failure(error):
                 print("no photos were found: \(error)")
                 self.tableViewDataSource.photos.removeAll()
             }
-            self.dispatchGroup.notify(queue: .main) {
+            self.dispatchGroup.notify(queue: .main) { // Notifying dispatchGroup to go back to main Queue
                 self.tableView.reloadData()
             }
         }
