@@ -14,14 +14,22 @@ class ViewController: UIViewController {
     let tableViewDataSource = TableViewDataSource()
     var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports", "Sea", "Jungle", "Mountain", "Beach", "City", "Car"]
 
-    let concurrentQueue = DispatchQueue(label: "CQ", attributes: .concurrent)
     let dispatchGroup = DispatchGroup()
-    var fetchedResponse = [[Int:Photo]]() {
+    var fetchedResponse = [Int:Photo]() {
         didSet {
             if fetchedResponse.count == cats.count {
-                print("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/ Data sent succesfully.")
-                fetchedResponse.sort{$0.keys.description < $1.keys.description}
-                self.tableViewDataSource.fetchedResponseArray = fetchedResponse
+
+                let sorted = fetchedResponse.sorted { (a, b) -> Bool in
+                    a.key < b.key
+                }
+                
+                for i in 0..<sorted.count {
+                    let v = sorted[i]
+                    self.tableViewDataSource.photos.append(v.value)
+                }
+                self.dispatchGroup.notify(queue: .main) {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -40,11 +48,7 @@ class ViewController: UIViewController {
 
         tableView.dataSource = tableViewDataSource
         for i in 0..<cats.count {
-
-//            concurrentQueue.async {
-                self.fetchData(searchTerm: self.cats[i], index: i)
-//            }
-
+            self.fetchData(searchTerm: self.cats[i], index: i)
         }
     }
     
@@ -53,18 +57,13 @@ class ViewController: UIViewController {
         store.searchPhotos(with: searchTerm, orient: false) { (photoResults) in
             switch photoResults {
             case let .success(photos):
-                print("***********************: \(searchTerm): \(photos.count), \(photos[0].id)")
                 OperationQueue.main.addOperation {
-                    self.fetchedResponse.append([index : photos[0]])
-//                    self.tableViewDataSource.photos.append(photos[0])
+                    self.fetchedResponse[index] = photos[0]
                     self.dispatchGroup.leave() //USED for adding concurrency to fetching data when calling this func multiple times
                 }
             case let .failure(error):
                 print("no photos were found: \(error)")
                 self.tableViewDataSource.photos.removeAll()
-            }
-            self.dispatchGroup.notify(queue: .main) { // Notifying dispatchGroup to go back to main Queue
-                self.tableView.reloadData()
             }
         }
     }
@@ -88,6 +87,7 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         if self.tableViewDataSource.photos.count > 0 {
+
             let photo = self.tableViewDataSource.photos[indexPath.row]
             self.store.fetchImage(for: photo) { (result) in
                 guard let photoIndex = self.tableViewDataSource.photos.firstIndex(of: photo),
@@ -95,6 +95,7 @@ extension ViewController: UITableViewDelegate {
                         return
                 }
                 let photoIndexPath = IndexPath(row: photoIndex, section: 0)
+                
                 
                 OperationQueue.main.addOperation{
                     if let cell = self.tableView.cellForRow(at: photoIndexPath) as? CustomTableViewCell {
