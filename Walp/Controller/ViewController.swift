@@ -12,12 +12,12 @@ class ViewController: UIViewController {
     
     let store = PhotoStore()
     let tableViewDataSource = TableViewDataSource()
-    var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports", "Sea", "Jungle", "Mountain", "Beach", "City", "Car"]
+    //var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports", "Sea", "Jungle", "Mountain", "Beach", "City", "Car"]
 
     let dispatchGroup = DispatchGroup()
     var fetchedResponse = [Int:Photo]() {
         didSet {
-            if fetchedResponse.count == cats.count {
+            if fetchedResponse.count == tableViewDataSource.cats.count {
 
                 let sorted = fetchedResponse.sorted { (a, b) -> Bool in
                     a.key < b.key
@@ -47,8 +47,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
 
         tableView.dataSource = tableViewDataSource
-        for i in 0..<cats.count {
-            self.fetchData(searchTerm: self.cats[i], index: i)
+        for i in 0..<tableViewDataSource.cats.count {
+            self.fetchData(searchTerm: self.tableViewDataSource.cats[i], index: i)
         }
     }
     
@@ -80,6 +80,18 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: IBActions
+    @IBAction func addNewRow(_ sender: UIBarButtonItem) {
+        self.tableViewDataSource.cats.append("yellow")
+        DispatchQueue.main.sync {
+            self.fetchData(searchTerm: self.tableViewDataSource.cats.last!, index: self.tableViewDataSource.cats.count-1)
+        }
+        self.fetchData(searchTerm: self.tableViewDataSource.cats.last!, index: self.tableViewDataSource.cats.count-1)
+        print("Added")
+        tableView.reloadData()
+    }
+    
 }
 
 extension ViewController: UITableViewDelegate {
@@ -88,6 +100,7 @@ extension ViewController: UITableViewDelegate {
         
         if self.tableViewDataSource.photos.count > 0 {
 
+            print(self.tableViewDataSource.photos.count, "---", indexPath.row)
             let photo = self.tableViewDataSource.photos[indexPath.row]
             self.store.fetchImage(for: photo) { (result) in
                 guard let photoIndex = self.tableViewDataSource.photos.firstIndex(of: photo),
@@ -107,7 +120,7 @@ extension ViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
-        self.searchQuery = cats[indexPath.item]
+        self.searchQuery = tableViewDataSource.cats[indexPath.item]
         self.performSegue(withIdentifier: "showImages", sender: self)
     }
 }

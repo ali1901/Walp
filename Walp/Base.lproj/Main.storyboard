@@ -68,7 +68,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="whA-rJ-QDv"/>
+                    <navigationItem key="navigationItem" id="whA-rJ-QDv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="iWQ-ol-Sc8">
+                            <connections>
+                                <action selector="addNewRow:" destination="BYZ-38-t0r" id="EDO-WN-uH9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Sgg-vY-nUo" id="aoh-bN-zxC"/>
                         <segue destination="kqj-6m-H25" kind="show" identifier="showImages" id="A8N-Zd-Pbc"/>
