@@ -52,6 +52,14 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
+        for i in 0..<tableViewDataSource.cats.count {
+            self.fetchData(searchTerm: self.tableViewDataSource.cats[i], index: i)
+        }
+    }
+    
     private func fetchData(searchTerm: String, index: Int) {
         dispatchGroup.enter() //USED for adding concurrency to fetching data when calling this func multiple times
         store.searchPhotos(with: searchTerm, orient: false) { (photoResults) in
@@ -81,15 +89,28 @@ class ViewController: UIViewController {
         }
     }
     
+    // MARK: Functions
+    private func alertViewSetUp() {
+        let alertView = UIAlertController(title: "Search", message: "", preferredStyle: .alert)
+        alertView.addTextField { text in
+            self.searchQuery = text.text ?? "Dallas"
+        }
+        let goBtn = UIAlertAction(title: "Go", style: .default) { (action1) in
+            self.performSegue(withIdentifier: "showImages", sender: self)
+        }
+        let cancelBtn = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertView.addAction(cancelBtn)
+        alertView.addAction(goBtn)
+        present(alertView, animated: true)
+    }
+    
     // MARK: IBActions
     @IBAction func addNewRow(_ sender: UIBarButtonItem) {
-        self.tableViewDataSource.cats.append("yellow")
-        DispatchQueue.main.sync {
-            self.fetchData(searchTerm: self.tableViewDataSource.cats.last!, index: self.tableViewDataSource.cats.count-1)
-        }
-        self.fetchData(searchTerm: self.tableViewDataSource.cats.last!, index: self.tableViewDataSource.cats.count-1)
+//        self.tableViewDataSource.cats.append("yellow")
+        alertViewSetUp()
+        searchQuery = "yellow"
         print("Added")
-        tableView.reloadData()
+//
     }
     
 }
