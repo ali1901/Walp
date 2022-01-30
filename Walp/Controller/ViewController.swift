@@ -92,10 +92,10 @@ class ViewController: UIViewController {
     // MARK: Functions
     private func alertViewSetUp() {
         let alertView = UIAlertController(title: "Search", message: "", preferredStyle: .alert)
-        alertView.addTextField { text in
-            self.searchQuery = text.text ?? "Dallas"
-        }
-        let goBtn = UIAlertAction(title: "Go", style: .default) { (action1) in
+        alertView.addTextField()
+        
+        let goBtn = UIAlertAction(title: "Go", style: .default) { (action) in
+            self.searchQuery = alertView.textFields?[0].text ?? "Dallas" 
             self.performSegue(withIdentifier: "showImages", sender: self)
         }
         let cancelBtn = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
