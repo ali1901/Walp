@@ -55,24 +55,9 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 
+        self.tableViewDataSource.photos.removeAll() //After removing old objects and reloading them, new rows get their image now
         for i in 0..<tableViewDataSource.cats.count {
             self.fetchData(searchTerm: self.tableViewDataSource.cats[i], index: i)
-        }
-    }
-    
-    private func fetchData(searchTerm: String, index: Int) {
-        dispatchGroup.enter() //USED for adding concurrency to fetching data when calling this func multiple times
-        store.searchPhotos(with: searchTerm, orient: false) { (photoResults) in
-            switch photoResults {
-            case let .success(photos):
-                OperationQueue.main.addOperation {
-                    self.fetchedResponse[index] = photos[0]
-                    self.dispatchGroup.leave() //USED for adding concurrency to fetching data when calling this func multiple times
-                }
-            case let .failure(error):
-                print("no photos were found: \(error)")
-                self.tableViewDataSource.photos.removeAll()
-            }
         }
     }
 
@@ -90,12 +75,30 @@ class ViewController: UIViewController {
     }
     
     // MARK: Functions
+    private func fetchData(searchTerm: String, index: Int) {
+        dispatchGroup.enter() //USED for adding concurrency to fetching data when calling this func multiple times
+        store.searchPhotos(with: searchTerm, orient: false) { (photoResults) in
+            switch photoResults {
+            case let .success(photos):
+                OperationQueue.main.addOperation {
+                    self.fetchedResponse[index] = photos[0]
+                    self.dispatchGroup.leave() //USED for adding concurrency to fetching data when calling this func multiple times
+                }
+            case let .failure(error):
+                print("no photos were found: \(error)")
+                self.tableViewDataSource.photos.removeAll()
+            }
+        }
+    }
+    
     private func alertViewSetUp() {
         let alertView = UIAlertController(title: "Search", message: "", preferredStyle: .alert)
         alertView.addTextField()
         
         let goBtn = UIAlertAction(title: "Go", style: .default) { (action) in
-            self.searchQuery = alertView.textFields?[0].text ?? "Dallas" 
+            let newtxt = alertView.textFields?[0].text ?? "Dallas"
+            self.searchQuery = newtxt
+            self.addNewRowToTV(for: newtxt)
             self.performSegue(withIdentifier: "showImages", sender: self)
         }
         let cancelBtn = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -104,13 +107,13 @@ class ViewController: UIViewController {
         present(alertView, animated: true)
     }
     
+    private func addNewRowToTV(for label: String) {
+        self.tableViewDataSource.cats.append(label)
+    }
+    
     // MARK: IBActions
     @IBAction func addNewRow(_ sender: UIBarButtonItem) {
-//        self.tableViewDataSource.cats.append("yellow")
         alertViewSetUp()
-        searchQuery = "yellow"
-        print("Added")
-//
     }
     
 }
