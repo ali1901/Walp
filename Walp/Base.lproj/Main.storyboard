@@ -69,6 +69,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="whA-rJ-QDv">
+                        <barButtonItem key="leftBarButtonItem" title="Random" id="bOU-uY-AaF">
+                            <connections>
+                                <action selector="randomBtn:" destination="BYZ-38-t0r" id="AQC-MI-HLo"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iWQ-ol-Sc8">
                             <connections>
                                 <action selector="addNewRow:" destination="BYZ-38-t0r" id="EDO-WN-uH9"/>
@@ -78,6 +83,7 @@
                     <connections>
                         <outlet property="tableView" destination="Sgg-vY-nUo" id="aoh-bN-zxC"/>
                         <segue destination="kqj-6m-H25" kind="show" identifier="showImages" id="A8N-Zd-Pbc"/>
+                        <segue destination="iNf-ZO-fTQ" kind="show" identifier="RandomSegue" id="Mz4-Qs-rdd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -203,7 +209,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2692.753623188406" y="138.61607142857142"/>
+            <point key="canvasLocation" x="1475" y="910"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZOo-91-Cqm">
@@ -227,4 +233,7 @@
             <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Mz4-Qs-rdd"/>
+    </inferredMetricsTieBreakers>
 </document>

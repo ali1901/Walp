@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     
     let store = PhotoStore()
     let tableViewDataSource = TableViewDataSource()
-    //var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports", "Sea", "Jungle", "Mountain", "Beach", "City", "Car"]
 
     let dispatchGroup = DispatchGroup()
     var fetchedResponse = [Int:Photo]() {
@@ -37,6 +36,7 @@ class ViewController: UIViewController {
     var searchQuery = ""
     var photos = [Photo]()
     var images = [UIImage]()
+    var randomImage = UIImage()
     
     var img = UIImage()
     var fetchedImages = [UIImage]()
@@ -67,6 +67,11 @@ class ViewController: UIViewController {
             if let nvc = segue.destination as? ImagesCollectionViewController {
                 nvc.searchQuery = searchQuery
             }
+            case "RandomSegue":
+                if let nvc = segue.destination as? ImageViewController {
+                    nvc.image = randomImage
+            }
+            
         default:
             if let nvc = segue.destination as? ImagesCollectionViewController {
                 nvc.searchQuery = "taxi"
@@ -111,11 +116,35 @@ class ViewController: UIViewController {
         self.tableViewDataSource.cats.append(label)
     }
     
+    private func getRandomImage() {
+        store.randomPhoto { (photoResults) in
+            switch photoResults {
+            case let .success(photos):
+                self.store.fetchImage(for: photos[0]) { (imageResult) in
+                    switch imageResult {
+                    case let .success(image):
+                        OperationQueue.main.addOperation {
+                            self.randomImage = image
+                            self.performSegue(withIdentifier: "RandomSegue", sender: self)
+                        }
+                    case let .failure(error):
+                        print("Couldn't load random Image: \(error)")
+                    }
+                }
+            case let .failure(error):
+                print("Couldn't get a random image: \(error)")
+            }
+        }
+    }
+    
     // MARK: IBActions
     @IBAction func addNewRow(_ sender: UIBarButtonItem) {
         alertViewSetUp()
     }
     
+    @IBAction func randomBtn(_ sender: UIBarButtonItem) {
+        getRandomImage()
+    }
 }
 
 extension ViewController: UITableViewDelegate {

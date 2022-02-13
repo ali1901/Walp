@@ -16,7 +16,7 @@ enum endPoint: String {
 struct UnsplashAPI {
     private static let baseUrlString = "https://api.unsplash.com"
     private static let apiKey = "0f47e3be92bb69eb63844b988c9c602efb99d314c8664d82e6393642652dfd80"
-    static let theKEY = "Client-ID 0f47e3be92bb69eb63844b988c9c602efb99d314c8664d82e6393642652dfd80"
+    static let theKEY = "Client-ID \(apiKey)"
     private static var queryToSearch = ""
     private static var orient = ""
     
@@ -26,6 +26,7 @@ struct UnsplashAPI {
         switch endPoint {
         case .random:
             bu = baseUrlString + "/photos/random"
+            return URL(string: bu)!
         case .search:
             bu = baseUrlString + "/search/photos"
         }
@@ -63,14 +64,19 @@ struct UnsplashAPI {
     }
     
     static var randomPhotoURL: URL {
-        return unsplashURL(endPoint: .random, parameters: nil)
+        return unsplashURL(endPoint: .random, parameters: ["orientation":"portrait"])
     }
     
-    public static func photos(from jsonData: Data) -> Result<[Photo], Error> {
+    public static func photos(from jsonData: Data, endPoint: String) -> Result<[Photo], Error> {
         do {
             let decoder = JSONDecoder()
-            let response = try decoder.decode(Response.self, from: jsonData)
-            return .success(response.results)
+            if endPoint == "search" {
+                let response = try decoder.decode(Response.self, from: jsonData)
+                return .success(response.results)
+            } else {
+                let response = try decoder.decode(Photo.self, from: jsonData)
+                return .success([response])
+            }
         } catch {
             return .failure(error)
         }

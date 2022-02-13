@@ -13,13 +13,7 @@ class PhotoStore {
     
     let imageStore = ImageStore()
     
-    var results = [Photo]() {
-        didSet {
-            for item in results {
-                print("Item availibe: \(item)")
-            }
-        }
-    }
+    var results = [Photo]()
     
     private let session: URLSession = {
         let config = URLSessionConfiguration.default
@@ -32,18 +26,30 @@ class PhotoStore {
         request.setValue(UnsplashAPI.theKEY, forHTTPHeaderField: "Authorization")
         let task = session.dataTask(with: request) {(data, response, error) in
             
-            let results = self.processPhotosRequest(with: data, error: error)
+            let results = self.processPhotosRequest(with: data, error: error, endPoint: "search")
             compleition(results)
         }
         task.resume()
     }
     
-    private func processPhotosRequest(with data: Data?, error: Error?) -> Result<[Photo], Error> {
+    public func randomPhoto(compleition: @escaping (Result<[Photo], Error>) -> Void) {
+        let url = UnsplashAPI.randomPhotoURL
+        var request = URLRequest(url: url)
+        
+        request.setValue(UnsplashAPI.theKEY, forHTTPHeaderField: "Authorization")
+        let task = session.dataTask(with: request) {(data, response, error) in
+            let results = self.processPhotosRequest(with: data, error: error, endPoint: "random")
+            compleition(results)
+        }
+        task.resume()
+    }
+    
+    private func processPhotosRequest(with data: Data?, error: Error?, endPoint: String) -> Result<[Photo], Error> {
         guard let jsonData = data else {
             return .failure(error!)
         }
         
-        return UnsplashAPI.photos(from: jsonData)
+        return UnsplashAPI.photos(from: jsonData, endPoint: endPoint)
     }
     
     public func fetchImage(for photo: Photo, with compelition: @escaping (Result<UIImage, Error>) -> Void) {
