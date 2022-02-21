@@ -12,6 +12,7 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
     
     var photos = [Photo]()
     var cats = ["Snow", "Nature", "Night Sky", "Sunflower", "Sports", "Sea", "Jungle", "Mountain", "Beach", "City", "Car"]
+    let ds = ColorsCVDataSource()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
@@ -48,7 +49,8 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
                 cell.update(displaying: nil)
                 return cell
             default:
-                let cell = tableView.dequeueReusableCell(withIdentifier: "colorsCell", for: indexPath)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "colorsCell", for: indexPath) as! TableViewCellWithCollectionView
+                cell.colorsCollectionView.dataSource = ds
                 return cell
             }
             

@@ -10,6 +10,7 @@ import UIKit
 
 class TableViewCellWithCollectionView: UITableViewCell {
 
-
+    @IBOutlet weak var colorsCollectionView: UICollectionView!
+    
 
 }
