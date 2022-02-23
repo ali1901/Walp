@@ -42,10 +42,16 @@ class ViewController: UIViewController {
     var fetchedImages = [UIImage]()
     @IBOutlet weak var tableView: UITableView!
     
+    let notificationName = "ColorPicked"
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self) //If the class isn't in memory we don't want to have the observers.
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
+        observer()
         tableView.dataSource = tableViewDataSource
         for i in 0..<tableViewDataSource.cats.count {
             self.fetchData(searchTerm: self.tableViewDataSource.cats[i], index: i)
@@ -80,6 +86,20 @@ class ViewController: UIViewController {
     }
     
     // MARK: Functions
+    
+    private func observer() {
+        let name = Notification.Name(notificationName)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.setChosenColor(notification:)), name: name, object: nil) //The observer for observing posted notification: selected color in ColorCVDelegate
+    }
+    
+    @objc private func setChosenColor(notification: Notification) { //This func is called after observer observes the notification. //after a color is selected.
+        if let ue = notification.userInfo {
+            let color = ue["selectedColor"] as! String
+            self.searchQuery = color
+            performSegue(withIdentifier: "showImages", sender: self)
+        }
+    }
+    
     private func fetchData(searchTerm: String, index: Int) {
         dispatchGroup.enter() //USED for adding concurrency to fetching data when calling this func multiple times
         store.searchPhotos(with: searchTerm, orient: false) { (photoResults) in

@@ -62,7 +62,7 @@ class ImagesCollectionViewController: UICollectionViewController {
         if let img = cell?.imageView.image {
             image = img
         }
-        performSegue(withIdentifier: "ShowImage", sender: nil)
+        performSegue(withIdentifier: "ShowImage", sender: UICollectionViewCell())
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

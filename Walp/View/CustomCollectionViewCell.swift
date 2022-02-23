@@ -13,7 +13,6 @@ class CustomCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    
     func update(diplaying image: UIImage?) {
         if let img = image {
             spinner.stopAnimating()

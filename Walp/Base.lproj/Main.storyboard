@@ -59,9 +59,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="398" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lPd-Gm-tap">
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lPd-Gm-tap">
                                                     <rect key="frame" x="0.0" y="0.0" width="398" height="70"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZI5-ik-6qW">
                                                         <size key="itemSize" width="50" height="50"/>
@@ -83,6 +82,12 @@
                                                     </cells>
                                                 </collectionView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lPd-Gm-tap" firstAttribute="top" secondItem="8Ph-RD-kfE" secondAttribute="top" id="DBG-FB-mX7"/>
+                                                <constraint firstAttribute="trailing" secondItem="lPd-Gm-tap" secondAttribute="trailing" id="P8A-yL-sr0"/>
+                                                <constraint firstItem="lPd-Gm-tap" firstAttribute="leading" secondItem="8Ph-RD-kfE" secondAttribute="leading" id="PGb-Dg-c6n"/>
+                                                <constraint firstAttribute="bottom" secondItem="lPd-Gm-tap" secondAttribute="bottom" id="o1h-Sx-VRF"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="colorsCollectionView" destination="lPd-Gm-tap" id="oet-zj-AnV"/>
